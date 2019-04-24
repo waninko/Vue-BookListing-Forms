@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>{{title}}</h1>
-
+ <ul>
+      <book-item v-for='book in books' :key='book.id' :book='book'></book-item>
+    </ul>
     <hr>
     <h2>Filtered Books By Ownership </h2>
     <select v-model="holding">
@@ -27,9 +29,9 @@ export default {
       title: "All Books",
       states: ["Want to Read", "Read", "Reading"],
       books: [
-        { title: "Self-Reliance", author: "Ralph Waldo Emerson", finishedReading: true, ownersihp: "borrowed" },
-        { title: "American Gods", author: "Neil Gaiman", finishedReading: false, ownersihp: "bought" },
-        { title: "Amusing Ourselves to Death", author: "Neil Postman", finishedReading: true,  ownersihp: "borrowed" }
+        { title: "Self-Reliance", author: "Ralph Waldo Emerson", finishedReading: true, ownership: "borrowed" },
+        { title: "American Gods", author: "Neil Gaiman", finishedReading: false, ownership: "bought" },
+        { title: "Amusing Ourselves to Death", author: "Neil Postman", finishedReading: true,  ownership: "borrowed" }
       ],
       filters: ["bought", "borrowed"],
       holding: "bought"
@@ -46,7 +48,7 @@ export default {
   },
   methods: {
     appendBook(bookData) {
-      this.books.push({ title: bookData.bookTitle, author: bookData.bookAuthor, finishedReading: bookData.finishedReading, ownersihp: bookData.ownersihp });
+      this.books.push({ title: bookData.bookTitle, author: bookData.bookAuthor, finishedReading: bookData.finishedReading, ownership: bookData.ownersihp });
     }
   }
 };
